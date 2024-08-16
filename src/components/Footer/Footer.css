@@ -1,11 +1,3 @@
-span {
- color: white;
-}
-
-a {
-  color: white;
-}
-
 .footer {
   display: flex;
   flex-direction: column;
@@ -15,6 +7,11 @@ a {
   width: 100%;
   height: 6rem;
   background-color: #0c3c06;
+  color: white;
+
+  a {
+    color: white;
+  }
 }
 
 .families {

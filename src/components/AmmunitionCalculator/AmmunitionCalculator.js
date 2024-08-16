@@ -3,8 +3,8 @@ import './AmmunitionCalculator.css'
 
 const AmmunitionCalculator = () => {
   const [profile, setProfile] = useState('CPF')
-  const [ptQuantity, setPtQuantity] = useState(0)
-  const [subQuantity, setSubQuantity] = useState(0)
+  const [ptQuantity, setPtQuantity] = useState('') // Inicializando como string vazia
+  const [subQuantity, setSubQuantity] = useState('') // Inicializando como string vazia
 
   const prices = {
     'CPF': { pt: { clean: 45, dirty: 63 }, sub: { clean: 60, dirty: 84 } },
@@ -20,18 +20,27 @@ const AmmunitionCalculator = () => {
   }
 
   const handlePtChange = (e) => {
-    setPtQuantity(Number(e.target.value))
+    const value = e.target.value;
+    // Permitir apenas números ou uma string vazia
+    if (!isNaN(value)) {
+      setPtQuantity(value)
+    }
   }
 
   const handleSubChange = (e) => {
-    setSubQuantity(Number(e.target.value))
+    const value = e.target.value;
+    // Permitir apenas números ou uma string vazia
+    if (!isNaN(value)) {
+      setSubQuantity(value)
+    }
   }
 
   const calculateTotal = () => {
-    const ptClean = ptQuantity * prices[profile].pt.clean
-    const ptDirty = ptQuantity * prices[profile].pt.dirty
-    const subClean = subQuantity * prices[profile].sub.clean
-    const subDirty = subQuantity * prices[profile].sub.dirty
+    // Convertendo os valores para número antes de calcular
+    const ptClean = (ptQuantity ? parseInt(ptQuantity) : 0) * prices[profile].pt.clean
+    const ptDirty = (ptQuantity ? parseInt(ptQuantity) : 0) * prices[profile].pt.dirty
+    const subClean = (subQuantity ? parseInt(subQuantity) : 0) * prices[profile].sub.clean
+    const subDirty = (subQuantity ? parseInt(subQuantity) : 0) * prices[profile].sub.dirty
 
     return {
       ptClean,
@@ -46,43 +55,58 @@ const AmmunitionCalculator = () => {
   const totals = calculateTotal()
 
   return (
-    <div class='container'>
-      <h1>Calculadora de Munição</h1>
+    <div className='container'>
+      <h1>💸 CALCULADORA DE MUNIÇÃO 💸</h1>
 
-      <div class='inputs'>
-        <label>
-          Comprador:
-          <select class='input1' value={profile} onChange={handleProfileChange}>
-            <option value="CPF">🙋🏻 CPF</option>
-            <option value="CNPJ Esporádico">👩🏻‍💼 CNPJ Esporádico</option>
-            <option value="CNPJ Regular">🫱🏽‍🫲🏽 CNPJ Regular</option>
-            <option value="Hells (Garagem)">🚗 Hells (Garagem)</option>
-            <option value="Oitavo Anjo">👼🏻 Oitavo Anjo</option>
-            <option value="Hydra">🐍 Hydra</option>
-          </select>
-        </label>
+      <div className='input-wrapper'>
+        <div className='inputs'>
+          <label>
+            Comprador:
+            <select className='input1' value={profile} onChange={handleProfileChange}>
+              <option value="CPF">🙋🏻 CPF</option>
+              <option value="CNPJ Esporádico">👩🏻‍💼 CNPJ Esporádico</option>
+              <option value="CNPJ Regular">🫱🏽‍🫲🏽 CNPJ Regular</option>
+              <option value="Hells (Garagem)">🚗 Hells (Garagem)</option>
+              <option value="Oitavo Anjo">👼🏻 Oitavo Anjo</option>
+              <option value="Hydra">🐍 Hydra</option>
+            </select>
+          </label>
 
-        <div>
+          <div className='valueDescription simpleBold'>
+            <span>PT<span style={{ color: 'white' }}>.....</span><span className='clean'>R${prices[profile].pt.clean} (Limpo)</span> | <span className='dirty'>R${prices[profile].pt.dirty} (Sujo)</span></span>
+            <span>SUB<span style={{ color: 'white' }}>...</span><span className='clean'>R${prices[profile].sub.clean} (Limpo)</span> | <span className='dirty'>R${prices[profile].sub.dirty} (Sujo)</span></span>
+          </div>
+
           <label>
             Quantidade PT:
-            <input class='input2' type="number" value={ptQuantity} onChange={handlePtChange} />
+            <input
+              className='input2'
+              type="number"
+              value={ptQuantity}
+              onChange={handlePtChange}
+              placeholder="Digite a quantidade"
+            />
           </label>
-        </div>
 
-        <div>
           <label>
             Quantidade SUB:
-            <input class='input3' type="number" value={subQuantity} onChange={handleSubChange} />
+            <input
+              className='input3'
+              type="number"
+              value={subQuantity}
+              onChange={handleSubChange}
+              placeholder="Digite a quantidade"
+            />
           </label>
         </div>
       </div>
 
-      <div class='result'>
-        <h2>Resultado</h2>
-        <p style={{ fontWeight: 800 }}>PT - <span class='clean'>Limpo: R${totals.ptClean.toLocaleString()}</span> | <span class='dirty'>Sujo: R${totals.ptDirty.toLocaleString()}</span></p>
-        <p style={{ fontWeight: 800 }}> SUB - <span class='clean'>Limpo: R${totals.subClean.toLocaleString()}</span> | <span class='dirty'>Sujo: R${totals.subDirty.toLocaleString()}</span></p>
-        <p style={{ fontWeight: 800 }}>
-          Total - <span class='clean'>Limpo: R${totals.totalClean.toLocaleString()}</span> | <span class='dirty'>Sujo: R${totals.totalDirty.toLocaleString()}</span>
+      <div className='result'>
+        <h2>📃 RESULTADO 📃</h2>
+        <p className='simpleBold'>PT: <span className='clean'>Limpo: R${totals.ptClean.toLocaleString()}</span> | <span className='dirty'>Sujo: R${totals.ptDirty.toLocaleString()}</span></p>
+        <p className='simpleBold'> SUB: <span className='clean'>Limpo: R${totals.subClean.toLocaleString()}</span> | <span className='dirty'>Sujo: R${totals.subDirty.toLocaleString()}</span></p>
+        <p className='simpleBold' style={{ marginTop: '2rem' }}>
+          TOTAL A PAGAR: <span className='clean'>Limpo: R${totals.totalClean.toLocaleString()}</span> | <span className='dirty'>Sujo: R${totals.totalDirty.toLocaleString()}</span>
         </p>
       </div>
     </div>
