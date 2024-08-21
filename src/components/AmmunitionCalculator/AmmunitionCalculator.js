@@ -11,8 +11,11 @@ const AmmunitionCalculator = () => {
     'CNPJ Esporádico': { pt: { clean: 35, dirty: 49 }, sub: { clean: 50, dirty: 70 } },
     'CNPJ Regular': { pt: { clean: 30, dirty: 42 }, sub: { clean: 45, dirty: 63 } },
     'Hells (Garagem)': { pt: { clean: 35, dirty: 49 }, sub: { clean: 50, dirty: 70 } },
-    'Oitavo Anjo': { pt: { clean: 30, dirty: 42 }, sub: { clean: 45, dirty: 63 } },
+    'Oitavo Anjo': { pt: { clean: 30, dirty: 42 }, sub: { clean: 40, dirty: 63 } },
     'Hydra': { pt: { clean: 30, dirty: 42 }, sub: { clean: 45, dirty: 63 } },
+    'Voltz5': { pt: { clean: 22, dirty: 42 }, sub: { clean: 30, dirty: 63 } },
+    'Voltz3': { pt: { clean: 35, dirty: 42 }, sub: { clean: 40, dirty: 63 } },
+    'Voltz': { pt: { clean: 35, dirty: 42 }, sub: { clean: 45, dirty: 63 } },
   }
 
   const handleProfileChange = (e) => {
@@ -56,7 +59,7 @@ const AmmunitionCalculator = () => {
 
   return (
     <div className='container'>
-      <h1>💸 CALCULADORA DE MUNIÇÃO 💸</h1>
+      <h1 className='title'>💸 CALCULADORA DE MUNIÇÃO 💸</h1>
 
       <div className='input-wrapper'>
         <div className='inputs'>
@@ -69,6 +72,9 @@ const AmmunitionCalculator = () => {
               <option value="Hells (Garagem)">🚗 Hells (Garagem)</option>
               <option value="Oitavo Anjo">👼🏻 Oitavo Anjo</option>
               <option value="Hydra">🐍 Hydra</option>
+              <option value="Voltz5">👨🏻‍🌾 Voltz (+5k)</option>
+              <option value="Voltz3">👨🏻‍🌾 Voltz (+3k)</option>
+              <option value="Voltz">👨🏻‍🌾 Voltz</option>
             </select>
           </label>
 
@@ -108,6 +114,14 @@ const AmmunitionCalculator = () => {
         <p className='simpleBold' style={{ marginTop: '2rem' }}>
           TOTAL A PAGAR: <span className='clean'>Limpo: R${totals.totalClean.toLocaleString()}</span> | <span className='dirty'>Sujo: R${totals.totalDirty.toLocaleString()}</span>
         </p>
+      </div>
+      
+      <div className='warning-wrapper'>
+        <div className='warning'>
+          <span><b>⚠️ ATENÇÃO ⚠️</b></span>
+          <span>Os valores no <b>SUJO</b> para <b>Hydra</b>, <b>8º Anjo</b> e <b>Voltz</b> são os mesmos valores
+          do <b>CNPJ Regular</b>, pois só foi acordado valor no limpo.</span>
+        </div>
       </div>
     </div>
   )

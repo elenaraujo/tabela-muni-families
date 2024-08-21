@@ -1,0 +1,36 @@
+.container-product {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.product-table th,
+.product-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.product-table th {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+}
+
+.product-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.product-table td {
+  border-bottom: 1px solid #ddd;
+}
+
+.product-table td:last-child {
+  text-align: center;
+}

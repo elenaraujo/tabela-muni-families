@@ -1,5 +1,10 @@
 .container {
-  margin-top: 5rem;
+  margin-top: 1rem;
+  width: 50%;
+}
+
+.title {
+  font-size: 1.8rem;
 }
 
 .input-wrapper {
@@ -37,7 +42,8 @@
 }
 
 .result {
-  margin-top: 8rem;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
 }
 
 .simpleBold {
@@ -56,5 +62,19 @@
   font-size: 10px;
   align-items: end;
   width: 19.7rem;
-  margin-bottom: 2rem;
+}
+
+.warning-wrapper {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.warning {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 55%;
 }

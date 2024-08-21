@@ -12,7 +12,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          arpiel
+          Elen Arpiel
         </a> 💚
       </span>
     </div>
