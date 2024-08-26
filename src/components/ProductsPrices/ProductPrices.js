@@ -6,20 +6,20 @@ const ProductPrices = () => {
     {
       name: 'Colete',
       supplier: '🐍 Hydra',
-      cleanPrice: '6,000',
+      cleanPrice: '6.000',
       dirtyPrice: '-'
     },
     {
       name: 'KochVP',
       supplier: '👼🏻 8º Anjo',
-      cleanPrice: '30,000',
-      dirtyPrice: '45,000'
+      cleanPrice: '30.000',
+      dirtyPrice: '45.000'
     },
     {
       name: 'Maconha',
       supplier: '👼🏻 8º Anjo',
-      cleanPrice: '375',
-      dirtyPrice: '420'
+      cleanPrice: '375,00',
+      dirtyPrice: '420,00'
     },
     {
       name: 'Five',

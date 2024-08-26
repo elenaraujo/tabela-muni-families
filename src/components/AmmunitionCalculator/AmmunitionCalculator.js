@@ -16,6 +16,7 @@ const AmmunitionCalculator = () => {
     'Voltz5': { pt: { clean: 22, dirty: 42 }, sub: { clean: 30, dirty: 63 } },
     'Voltz3': { pt: { clean: 35, dirty: 42 }, sub: { clean: 40, dirty: 63 } },
     'Voltz': { pt: { clean: 35, dirty: 42 }, sub: { clean: 45, dirty: 63 } },
+    'Cartel': { pt: { clean: 30, dirty: 42 }, sub: { clean: 40, dirty: 63 } },
   }
 
   const handleProfileChange = (e) => {
@@ -72,6 +73,7 @@ const AmmunitionCalculator = () => {
               <option value="Hells (Garagem)">🚗 Hells (Garagem)</option>
               <option value="Oitavo Anjo">👼🏻 Oitavo Anjo</option>
               <option value="Hydra">🐍 Hydra</option>
+              <option value="Cartel">🚬 Cartel</option>
               <option value="Voltz5">👨🏻‍🌾 Voltz (+5k)</option>
               <option value="Voltz3">👨🏻‍🌾 Voltz (+3k)</option>
               <option value="Voltz">👨🏻‍🌾 Voltz</option>
@@ -119,7 +121,7 @@ const AmmunitionCalculator = () => {
       <div className='warning-wrapper'>
         <div className='warning'>
           <span><b>⚠️ ATENÇÃO ⚠️</b></span>
-          <span>Os valores no <b>SUJO</b> para <b>Hydra</b>, <b>8º Anjo</b> e <b>Voltz</b> são os mesmos valores
+          <span>Os valores no <b>SUJO</b> para <b>Hydra</b>, <b>8º Anjo</b>, <b>Cartel</b> e <b>Voltz</b> são os mesmos valores
           do <b>CNPJ Regular</b>, pois só foi acordado valor no limpo.</span>
         </div>
       </div>
