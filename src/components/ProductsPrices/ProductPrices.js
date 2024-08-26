@@ -26,6 +26,12 @@ const ProductPrices = () => {
       supplier: '🐝 Meraki',
       cleanPrice: '-',
       dirtyPrice: '-'
+    },
+    {
+      name: 'PT',
+      supplier: '🚬 Cartel',
+      cleanPrice: '30.000',
+      dirtyPrice: '-'
     }
   ];
 
