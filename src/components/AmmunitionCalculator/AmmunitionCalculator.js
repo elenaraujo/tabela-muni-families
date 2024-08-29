@@ -12,7 +12,7 @@ const AmmunitionCalculator = () => {
     'CNPJ Regular': { pt: { clean: 30, dirty: 42 }, sub: { clean: 45, dirty: 63 } },
     'Hells (Garagem)': { pt: { clean: 35, dirty: 49 }, sub: { clean: 50, dirty: 70 } },
     'Oitavo Anjo': { pt: { clean: 30, dirty: 42 }, sub: { clean: 40, dirty: 63 } },
-    'Hydra': { pt: { clean: 30, dirty: 42 }, sub: { clean: 45, dirty: 63 } },
+    'Hydra': { pt: { clean: 35, dirty: 42 }, sub: { clean: 50, dirty: 63 } },
     'Voltz5': { pt: { clean: 22, dirty: 42 }, sub: { clean: 30, dirty: 63 } },
     'Voltz3': { pt: { clean: 35, dirty: 42 }, sub: { clean: 40, dirty: 63 } },
     'Voltz': { pt: { clean: 35, dirty: 42 }, sub: { clean: 45, dirty: 63 } },

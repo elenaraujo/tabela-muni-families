@@ -27,12 +27,6 @@ const ProductPrices = () => {
       cleanPrice: '-',
       dirtyPrice: '-'
     },
-    {
-      name: 'PT',
-      supplier: '🚬 Cartel',
-      cleanPrice: '30.000',
-      dirtyPrice: '-'
-    }
   ];
 
   return (
