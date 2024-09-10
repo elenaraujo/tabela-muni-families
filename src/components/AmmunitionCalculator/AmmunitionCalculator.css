@@ -31,6 +31,14 @@
   margin-left: 2.77rem;
 }
 
+.input4 {
+  margin-left: 2rem;
+}
+
+.input5 {
+  margin-left: 1.8rem;
+}
+
 .clean {
   color: green;
   font-weight: 800;
@@ -65,7 +73,8 @@
 }
 
 .warning-wrapper {
-  margin-top: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   display: flex;
   justify-content: center;
   width: 100%;
