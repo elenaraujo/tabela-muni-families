@@ -13,10 +13,10 @@ const AmmunitionCalculator = () => {
     "CNPJ Esporádico": { pt: 35, sub: 50, rifle: 75, meta: 75 },
     "CNPJ Regular": { pt: 30, sub: 45, rifle: 70, meta: 75 },
     "Hells (Garagem)": { pt: 35, sub: 50, rifle: 70, meta: 75 },
-    "Oitavo Anjo": { pt: 30, sub: 40, rifle: 70, meta: 75 },
+    "Oitavo Anjo": { pt: 30, sub: 50, rifle: 70, meta: 75 },
     Hydra: { pt: 35, sub: 50, rifle: 75, meta: 75 },
     Cartel: { pt: 30, sub: 40, rifle: 75, meta: 75 },
-    Meraki: { pt: 30, sub: 40, rifle: 70, meta: 75 },
+    Meraki: { pt: 30, sub: 50, rifle: 70, meta: 75 },
   };
 
   const getRiflePrice = () => {
@@ -32,6 +32,21 @@ const AmmunitionCalculator = () => {
       return totalAmmo >= 1000 ? 65 : 70;
     }
     return prices[profile].rifle;
+  };
+
+  const getSubPrice = () => {
+    const totalAmmo =
+      (parseInt(ptQuantity) || 0) +
+      (parseInt(subQuantity) || 0) +
+      (parseInt(rifleQuantity) || 0);
+    if (
+      profile === "Meraki" ||
+      profile === "Hells (Garagem)" ||
+      profile === "Oitavo Anjo"
+    ) {
+      return totalAmmo >= 1000 ? 45 : 50;
+    }
+    return prices[profile].sub;
   };
 
   const handleProfileChange = (e) => {
@@ -70,8 +85,8 @@ const AmmunitionCalculator = () => {
     const ptClean =
       (ptQuantity ? parseInt(ptQuantity) : 0) * prices[profile].pt;
     const ptDirty = Math.ceil(ptClean * 1.3);
-    const subClean =
-      (subQuantity ? parseInt(subQuantity) : 0) * prices[profile].sub;
+    const subPrice = getSubPrice();
+    const subClean = (subQuantity ? parseInt(subQuantity) : 0) * subPrice;
     const subDirty = Math.ceil(subClean * 1.3);
     const riflePrice = getRiflePrice();
     const rifleClean =
@@ -133,11 +148,9 @@ const AmmunitionCalculator = () => {
             </span>
             <span>
               SUB<span style={{ color: "white" }}>...</span>
-              <span className="clean">
-                R${prices[profile].sub} (Limpo)
-              </span> |{" "}
+              <span className="clean">R${getSubPrice()} (Limpo)</span> |{" "}
               <span className="dirty">
-                R${Math.ceil(prices[profile].sub * 1.3)} (Sujo)
+                R${Math.ceil(getSubPrice() * 1.3)} (Sujo)
               </span>
             </span>
             <span>
@@ -256,27 +269,6 @@ const AmmunitionCalculator = () => {
             Sujo: R${totals.totalDirty.toLocaleString()}
           </span>
         </p>
-      </div>
-
-      <div className="warning-wrapper">
-        <div className="warning">
-          <h1>
-            <b>⚠️👵🏻 AVISOS DA VÉIA 👵🏻⚠️</b>
-          </h1>
-          <span>
-            1. <b>Por enquanto</b> não vendemos mais <b>muni de PT para CPF</b>{" "}
-            por ser sempre venda pequena. Muni de PT só se for{" "}
-            <b>quantidade alta e pra quem a gente gosta</b>
-          </span>
-          <span>
-            2. <b>Por enquanto</b> venderemos <b>NO MÁXIMO 300 meta por dia</b>{" "}
-            para cada família
-          </span>
-          <span>
-            3. Venda de metanfetamina <b>SOMENTE</b> por encomenda com 24h de
-            antecedência, <b>sem pronta entrega</b>.
-          </span>
-        </div>
       </div>
     </div>
   );
