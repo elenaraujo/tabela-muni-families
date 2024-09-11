@@ -32,6 +32,7 @@ const ProductPrices = () => {
   return (
     <div className='container-product'>
       <h1 className='title'>🔫 PRODUTOS E FORNECEDORES 🔫</h1>
+      <h3>* * * DESATUALIZADO * * *</h3>
       <table className='product-table'>
         <thead>
           <tr>

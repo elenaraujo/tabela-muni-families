@@ -6,20 +6,32 @@ const AmmunitionCalculator = () => {
   const [ptQuantity, setPtQuantity] = useState("");
   const [subQuantity, setSubQuantity] = useState("");
   const [rifleQuantity, setRifleQuantity] = useState("");
-  const [metaQuantity, setMetaQuantity] = useState(""); // Campo atualizado para "meta"
+  const [metaQuantity, setMetaQuantity] = useState("");
 
   const prices = {
     CPF: { pt: 45, sub: 60, rifle: 75, meta: 75 },
     "CNPJ Esporádico": { pt: 35, sub: 50, rifle: 75, meta: 75 },
     "CNPJ Regular": { pt: 30, sub: 45, rifle: 70, meta: 75 },
-    "Hells (Garagem)": { pt: 35, sub: 50, rifle: 65, meta: 75 },
-    "Oitavo Anjo": { pt: 30, sub: 40, rifle: 65, meta: 75 },
+    "Hells (Garagem)": { pt: 35, sub: 50, rifle: 70, meta: 75 },
+    "Oitavo Anjo": { pt: 30, sub: 40, rifle: 70, meta: 75 },
     Hydra: { pt: 35, sub: 50, rifle: 75, meta: 75 },
-    Voltz5: { pt: 22, sub: 30, rifle: 75, meta: 75 },
-    Voltz3: { pt: 35, sub: 40, rifle: 75, meta: 75 },
-    Voltz: { pt: 35, sub: 45, rifle: 75, meta: 75 },
     Cartel: { pt: 30, sub: 40, rifle: 75, meta: 75 },
-    Meraki: { pt: 30, sub: 40, rifle: 65, meta: 75 },
+    Meraki: { pt: 30, sub: 40, rifle: 70, meta: 75 },
+  };
+
+  const getRiflePrice = () => {
+    const totalAmmo =
+      (parseInt(ptQuantity) || 0) +
+      (parseInt(subQuantity) || 0) +
+      (parseInt(rifleQuantity) || 0);
+    if (
+      profile === "Meraki" ||
+      profile === "Hells (Garagem)" ||
+      profile === "Oitavo Anjo"
+    ) {
+      return totalAmmo >= 1000 ? 65 : 70;
+    }
+    return prices[profile].rifle;
   };
 
   const handleProfileChange = (e) => {
@@ -61,8 +73,9 @@ const AmmunitionCalculator = () => {
     const subClean =
       (subQuantity ? parseInt(subQuantity) : 0) * prices[profile].sub;
     const subDirty = Math.ceil(subClean * 1.3);
+    const riflePrice = getRiflePrice();
     const rifleClean =
-      (rifleQuantity ? parseInt(rifleQuantity) : 0) * prices[profile].rifle;
+      (rifleQuantity ? parseInt(rifleQuantity) : 0) * riflePrice;
     const rifleDirty = Math.ceil(rifleClean * 1.3);
     const metaClean =
       (metaQuantity ? parseInt(metaQuantity) : 0) * prices[profile].meta;
@@ -105,9 +118,6 @@ const AmmunitionCalculator = () => {
               <option value="Oitavo Anjo">👼🏻 Oitavo Anjo</option>
               <option value="Hydra">🐍 Hydra</option>
               <option value="Cartel">🚬 Cartel</option>
-              <option value="Voltz5">👨🏻‍🌾 Voltz (+5k)</option>
-              <option value="Voltz3">👨🏻‍🌾 Voltz (+3k)</option>
-              <option value="Voltz">👨🏻‍🌾 Voltz</option>
             </select>
           </label>
 
@@ -132,11 +142,9 @@ const AmmunitionCalculator = () => {
             </span>
             <span>
               RIFLE<span style={{ color: "white" }}>...</span>
-              <span className="clean">
-                R${prices[profile].rifle} (Limpo)
-              </span> |{" "}
+              <span className="clean">R${getRiflePrice()} (Limpo)</span> |{" "}
               <span className="dirty">
-                R${Math.ceil(prices[profile].rifle * 1.3)} (Sujo)
+                R${Math.ceil(getRiflePrice() * 1.3)} (Sujo)
               </span>
             </span>
             <span>
@@ -151,7 +159,7 @@ const AmmunitionCalculator = () => {
           </div>
 
           <label>
-          🍬 Quantidade PT:
+            🍬 Quantidade PT:
             <input
               className="input2"
               type="number"
@@ -162,7 +170,7 @@ const AmmunitionCalculator = () => {
           </label>
 
           <label>
-          🍬 Quantidade SUB:
+            🍬 Quantidade SUB:
             <input
               className="input3"
               type="number"
@@ -173,7 +181,7 @@ const AmmunitionCalculator = () => {
           </label>
 
           <label>
-          🍬 Quantidade RIFLE:
+            🍬 Quantidade RIFLE:
             <input
               className="input4"
               type="number"
@@ -184,7 +192,7 @@ const AmmunitionCalculator = () => {
           </label>
 
           <label>
-          🪨 Quantidade META:
+            🪨 Quantidade META:
             <input
               className="input5"
               type="number"
@@ -199,7 +207,7 @@ const AmmunitionCalculator = () => {
       <div className="result">
         <h2>📃 RESULTADO 📃</h2>
         <p className="simpleBold">
-        🍬 PT:{" "}
+          🍬 PT:{" "}
           <span className="clean">
             Limpo: R${totals.ptClean.toLocaleString()}
           </span>{" "}
@@ -209,7 +217,7 @@ const AmmunitionCalculator = () => {
           </span>
         </p>
         <p className="simpleBold">
-        🍬 SUB:{" "}
+          🍬 SUB:{" "}
           <span className="clean">
             Limpo: R${totals.subClean.toLocaleString()}
           </span>{" "}
@@ -219,7 +227,7 @@ const AmmunitionCalculator = () => {
           </span>
         </p>
         <p className="simpleBold">
-        🍬 RIFLE:{" "}
+          🍬 RIFLE:{" "}
           <span className="clean">
             Limpo: R${totals.rifleClean.toLocaleString()}
           </span>{" "}
@@ -229,7 +237,7 @@ const AmmunitionCalculator = () => {
           </span>
         </p>
         <p className="simpleBold">
-        🪨 META:{" "}
+          🪨 META:{" "}
           <span className="clean">
             Limpo: R${totals.metaClean.toLocaleString()}
           </span>{" "}
@@ -256,10 +264,17 @@ const AmmunitionCalculator = () => {
             <b>⚠️👵🏻 AVISOS DA VÉIA 👵🏻⚠️</b>
           </h1>
           <span>
-            1. <b>Por enquanto</b> não vendemos mais <b>muni de PT para CPF</b> por ser sempre venda pequena. Muni de PT só se for <b>quantidade alta e pra quem a gente gosta</b>
+            1. <b>Por enquanto</b> não vendemos mais <b>muni de PT para CPF</b>{" "}
+            por ser sempre venda pequena. Muni de PT só se for{" "}
+            <b>quantidade alta e pra quem a gente gosta</b>
           </span>
           <span>
-            2. <b>Por enquanto</b> venderemos <b>NO MÁXIMO 300 meta por dia</b> para cada família
+            2. <b>Por enquanto</b> venderemos <b>NO MÁXIMO 300 meta por dia</b>{" "}
+            para cada família
+          </span>
+          <span>
+            3. Venda de metanfetamina <b>SOMENTE</b> por encomenda com 24h de
+            antecedência, <b>sem pronta entrega</b>.
           </span>
         </div>
       </div>
