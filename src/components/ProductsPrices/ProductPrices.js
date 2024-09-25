@@ -2,32 +2,32 @@ import React from "react"
 import "./ProductPrices.css"
 
 const ProductPrices = () => {
-  const products = [
-    {
-      name: "Colete",
-      supplier: "🐍 Hydra",
-      cleanPrice: "6.000",
-      dirtyPrice: "-",
-    },
-    {
-      name: "KochVP",
-      supplier: "👼🏻 8º Anjo",
-      cleanPrice: "30.000",
-      dirtyPrice: "45.000",
-    },
-    {
-      name: "Maconha",
-      supplier: "👼🏻 8º Anjo",
-      cleanPrice: "375,00",
-      dirtyPrice: "420,00",
-    },
-    {
-      name: "Five",
-      supplier: "🐝 Meraki",
-      cleanPrice: "-",
-      dirtyPrice: "-",
-    },
-  ];
+  // const products = [
+  //   {
+  //     name: "Colete",
+  //     supplier: "🐍 Hydra",
+  //     cleanPrice: "6.000",
+  //     dirtyPrice: "-",
+  //   },
+  //   {
+  //     name: "KochVP",
+  //     supplier: "👼🏻 8º Anjo",
+  //     cleanPrice: "30.000",
+  //     dirtyPrice: "45.000",
+  //   },
+  //   {
+  //     name: "Maconha",
+  //     supplier: "👼🏻 8º Anjo",
+  //     cleanPrice: "375,00",
+  //     dirtyPrice: "420,00",
+  //   },
+  //   {
+  //     name: "Five",
+  //     supplier: "🐝 Meraki",
+  //     cleanPrice: "-",
+  //     dirtyPrice: "-",
+  //   },
+  // ];
 
   return (
     <div className="container-product">
@@ -52,7 +52,7 @@ const ProductPrices = () => {
         </div>
       </div>
 
-      <h1 className="title">🔫 PRODUTOS E FORNECEDORES 🔫</h1>
+      {/* <h1 className="title">🔫 PRODUTOS E FORNECEDORES 🔫</h1>
       <table className="product-table">
         <thead>
           <tr>
@@ -86,7 +86,7 @@ const ProductPrices = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 };

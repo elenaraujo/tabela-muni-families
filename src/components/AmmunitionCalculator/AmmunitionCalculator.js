@@ -17,34 +17,32 @@ const AmmunitionCalculator = () => {
     Hydra: { pt: 35, sub: 50, rifle: 75, meta: 75 },
     Cartel: { pt: 30, sub: 40, rifle: 75, meta: 75 },
     Meraki: { pt: 30, sub: 50, rifle: 70, meta: 75 },
+    Yankiis: { pt: 35, sub: 50, rifle: 75, meta: 75 },
+    Royal: { pt: 33, sub: 47, rifle: 67, meta: 75 },
   };
 
+  // Função para calcular o preço da munição de rifle com base na quantidade de rifle
   const getRiflePrice = () => {
-    const totalAmmo =
-      (parseInt(ptQuantity) || 0) +
-      (parseInt(subQuantity) || 0) +
-      (parseInt(rifleQuantity) || 0);
+    const rifleCount = parseInt(rifleQuantity) || 0;
     if (
       profile === "Meraki" ||
       profile === "Hells (Garagem)" ||
       profile === "Oitavo Anjo"
     ) {
-      return totalAmmo >= 1000 ? 65 : 70;
+      return rifleCount >= 1000 ? 65 : 70;
     }
     return prices[profile].rifle;
   };
 
+  // Função para calcular o preço da munição de sub com base na quantidade de sub
   const getSubPrice = () => {
-    const totalAmmo =
-      (parseInt(ptQuantity) || 0) +
-      (parseInt(subQuantity) || 0) +
-      (parseInt(rifleQuantity) || 0);
+    const subCount = parseInt(subQuantity) || 0;
     if (
       profile === "Meraki" ||
       profile === "Hells (Garagem)" ||
       profile === "Oitavo Anjo"
     ) {
-      return totalAmmo >= 1000 ? 45 : 50;
+      return subCount >= 1000 ? 45 : 50;
     }
     return prices[profile].sub;
   };
@@ -82,18 +80,15 @@ const AmmunitionCalculator = () => {
   };
 
   const calculateTotal = () => {
-    const ptClean =
-      (ptQuantity ? parseInt(ptQuantity) : 0) * prices[profile].pt;
+    const ptClean = (ptQuantity ? parseInt(ptQuantity) : 0) * prices[profile].pt;
     const ptDirty = Math.ceil(ptClean * 1.3);
     const subPrice = getSubPrice();
     const subClean = (subQuantity ? parseInt(subQuantity) : 0) * subPrice;
     const subDirty = Math.ceil(subClean * 1.3);
     const riflePrice = getRiflePrice();
-    const rifleClean =
-      (rifleQuantity ? parseInt(rifleQuantity) : 0) * riflePrice;
+    const rifleClean = (rifleQuantity ? parseInt(rifleQuantity) : 0) * riflePrice;
     const rifleDirty = Math.ceil(rifleClean * 1.3);
-    const metaClean =
-      (metaQuantity ? parseInt(metaQuantity) : 0) * prices[profile].meta;
+    const metaClean = (metaQuantity ? parseInt(metaQuantity) : 0) * prices[profile].meta;
     const metaDirty = Math.ceil(metaClean * 1.3);
 
     return {
@@ -120,11 +115,7 @@ const AmmunitionCalculator = () => {
         <div className="inputs">
           <label>
             Comprador:
-            <select
-              className="input1"
-              value={profile}
-              onChange={handleProfileChange}
-            >
+            <select className="input1" value={profile} onChange={handleProfileChange}>
               <option value="CPF">🙋🏻 CPF</option>
               <option value="CNPJ Esporádico">👩🏻‍💼 CNPJ Esporádico</option>
               <option value="CNPJ Regular">🫱🏽‍🫲🏽 CNPJ Regular</option>
@@ -133,6 +124,8 @@ const AmmunitionCalculator = () => {
               <option value="Oitavo Anjo">👼🏻 Oitavo Anjo</option>
               <option value="Hydra">🐍 Hydra</option>
               <option value="Cartel">🚬 Cartel</option>
+              <option value="Yankiis">🪖 Yankiis</option>
+              <option value="Royal">👑 Royal</option>
             </select>
           </label>
 
@@ -214,6 +207,14 @@ const AmmunitionCalculator = () => {
               placeholder="Digite a quantidade"
             />
           </label>
+        </div>
+      </div>
+
+      <div className="info-container">
+        <div className="info">
+          <span><b>INFO:</b> Somente <b>Meraki</b>, <b>Hells</b> e <b>8 Anjo</b> tem preço reduzido comprando acima de mil.</span>
+          <br/>
+          <span>O cálculo é feito automaticamente ao inserir os valores.</span>
         </div>
       </div>
 

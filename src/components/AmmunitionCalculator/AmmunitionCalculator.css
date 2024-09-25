@@ -50,7 +50,7 @@
 }
 
 .result {
-  margin-top: 6rem;
+  margin-top: 2rem;
   margin-bottom: 3rem;
 }
 
@@ -70,4 +70,20 @@
   font-size: 10px;
   align-items: end;
   width: 19.7rem;
+}
+
+.info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.info {
+  width: fit-content;
+  padding: 10px;
+  background-color: #e3f2fe;
+  border: 1px solid #77bff8;
+  border-radius: 8px;
+  font-size: 14px;
 }
