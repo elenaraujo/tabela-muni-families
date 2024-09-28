@@ -15,8 +15,8 @@ const AmmunitionCalculator = () => {
     "Hells (Garagem)": { pt: 35, sub: 50, rifle: 70, meta: 75 },
     "Oitavo Anjo": { pt: 30, sub: 50, rifle: 70, meta: 75 },
     Hydra: { pt: 35, sub: 50, rifle: 75, meta: 75 },
-    Cartel: { pt: 30, sub: 40, rifle: 75, meta: 75 },
-    Meraki: { pt: 30, sub: 50, rifle: 70, meta: 75 },
+    Cartel: { pt: 35, sub: 50, rifle: 75, meta: 75 },
+    Meraki: { pt: 30, sub: 45, rifle: 70, meta: 75 }, // 40 65
     Yankiis: { pt: 35, sub: 50, rifle: 75, meta: 75 },
     Royal: { pt: 33, sub: 47, rifle: 67, meta: 75 },
   };
@@ -37,13 +37,18 @@ const AmmunitionCalculator = () => {
   // Função para calcular o preço da munição de sub com base na quantidade de sub
   const getSubPrice = () => {
     const subCount = parseInt(subQuantity) || 0;
+  
+    if (profile === "Meraki") {
+      return subCount >= 1000 ? 40 : 45;
+    }
+  
     if (
-      profile === "Meraki" ||
       profile === "Hells (Garagem)" ||
       profile === "Oitavo Anjo"
     ) {
       return subCount >= 1000 ? 45 : 50;
     }
+  
     return prices[profile].sub;
   };
 
