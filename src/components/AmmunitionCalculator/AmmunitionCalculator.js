@@ -19,11 +19,25 @@ const AmmunitionCalculator = () => {
     Meraki: { pt: 30, sub: 45, rifle: 70, meta: 75 }, // 40 65
     Yankiis: { pt: 35, sub: 50, rifle: 75, meta: 75 },
     Royal: { pt: 33, sub: 47, rifle: 67, meta: 75 },
+    Hulligans: { pt: 30, sub: 45, rifle: 70, meta: 75 }
   };
 
   // Função para calcular o preço da munição de rifle com base na quantidade de rifle
   const getRiflePrice = () => {
     const rifleCount = parseInt(rifleQuantity) || 0;
+
+    if (profile === "CNPJ Esporádico") {
+      return rifleCount >= 1000 ? 70 : prices.CPF.rifle;
+    }
+
+    if (profile === "CNPJ Regular") {
+      return rifleCount >= 1000 ? 65 : 70;
+    }
+
+    if (profile === "Hulligans") {
+      return rifleCount >= 1000 ? 65 : 70;
+    }
+
     if (
       profile === "Meraki" ||
       profile === "Hells (Garagem)" ||
@@ -31,26 +45,37 @@ const AmmunitionCalculator = () => {
     ) {
       return rifleCount >= 1000 ? 65 : 70;
     }
+
     return prices[profile].rifle;
   };
 
   // Função para calcular o preço da munição de sub com base na quantidade de sub
   const getSubPrice = () => {
     const subCount = parseInt(subQuantity) || 0;
-  
+
+    if (profile === "CNPJ Esporádico") {
+      return subCount >= 1000 ? 50 : prices.CPF.sub;
+    }
+
+    if (profile === "CNPJ Regular") {
+      return subCount >= 1000 ? 45 : 50;
+    }
+
+    if (profile === "Hulligans") {
+      return subCount >= 1000 ? 45 : 50;
+    }
+
     if (profile === "Meraki") {
       return subCount >= 1000 ? 40 : 45;
     }
-  
-    if (
-      profile === "Hells (Garagem)" ||
-      profile === "Oitavo Anjo"
-    ) {
+
+    if (profile === "Hells (Garagem)" || profile === "Oitavo Anjo") {
       return subCount >= 1000 ? 45 : 50;
     }
-  
+
     return prices[profile].sub;
   };
+
 
   const handleProfileChange = (e) => {
     setProfile(e.target.value);
@@ -131,6 +156,7 @@ const AmmunitionCalculator = () => {
               <option value="Cartel">🚬 Cartel</option>
               <option value="Yankiis">🪖 Yankiis</option>
               <option value="Royal">👑 Royal</option>
+              <option value="Hulligans">🎭 Hulligans</option>
             </select>
           </label>
 
