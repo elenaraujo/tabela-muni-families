@@ -243,9 +243,7 @@ const AmmunitionCalculator = () => {
 
       <div className="info-container">
         <div className="info">
-          <span><b>INFO:</b> Somente <b>Meraki</b>, <b>Hells</b> e <b>8 Anjo</b> tem preço reduzido comprando acima de mil.</span>
-          <br/>
-          <span>O cálculo é feito automaticamente ao inserir os valores.</span>
+          <span><b>INFO: </b>Para os compradores que possuem preço diferenciado acima de mil, o cálculo é feito <b>automaticamente</b> ao inserir os valores nos campos.</span>
         </div>
       </div>
 
